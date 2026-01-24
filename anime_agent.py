@@ -17,8 +17,8 @@ def discover_favorite_scenes(book_name):
     Uses Azure OpenAI to list top 10 favorite moments from the book.
     Stores them locally as favorite_scenes.json in OUTPUT_DIR.
     """
-    api_key = os.getenv("AZURE_OPENAI_KEY")
-    endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+    api_key = os.getenv("4h0aYHtNIA8z8IEYDpvUJ9TQmt9Qp7kXWhBGtLKl34WMTnD5VtpwJQQJ99CAACYeBjFXJ3w3AAABACOG6c7M")
+    endpoint = os.getenv("https://bookanime-openai.openai.azure.com/")
 
     if not api_key or not endpoint:
         print("[ERROR] Azure OpenAI key and/or endpoint not set. Use setx to configure them.")
@@ -128,8 +128,8 @@ def save_output(data, suffix=""):
 # STEP 5: Azure OpenAI TTS
 # ----------------------------------------------------
 def generate_tts_azure(audio_text, voice_name="fable", output_path="narration.mp3"):
-    api_key = os.getenv("AZURE_OPENAI_KEY")
-    endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+    api_key = os.getenv("4h0aYHtNIA8z8IEYDpvUJ9TQmt9Qp7kXWhBGtLKl34WMTnD5VtpwJQQJ99CAACYeBjFXJ3w3AAABACOG6c7M")
+    endpoint = os.getenv("https://bookanime-openai.openai.azure.com/")
 
     if not api_key or not endpoint:
         print("[ERROR] Azure OpenAI API key/endpoint not set.")
