@@ -239,23 +239,37 @@ def svd_image_to_video_replicate(image_path, output_path, motion_bucket_id=127, 
     print(f"[SVD-Replicate] Converting {image_path}...")
 
     prediction = replicate.run(
-        REPLICATE_MODEL_VERSION,  # e.g. "stability-ai/stable-video-diffusion:<version-hash>"
+        REPLICATE_MODEL_VERSION,  # "stability-ai/stable-video-diffusion:<your_version_hash>"
         input={
-            "input_image": open(image_path, "rb"),
-            "frames": 14,
-            "motion_bucket_id": motion_bucket_id,
-            "fps": fps
+            "input_image": open(image_path, "rb"),  # must match model API spec
+            "frames": 14,                           # how long the clip is
+            "motion_bucket_id": motion_bucket_id,   # controls motion style
+            "fps": fps                              # frames per second
         }
     )
 
-    if prediction and len(prediction) > 0:
-        video_url = prediction[0]
-        video_data = requests.get(video_url).content
-        with open(output_path, "wb") as f:
-            f.write(video_data)
-        print(f"[OK] Video saved: {output_path}")
+    # Handle any possible output format
+    if not prediction:
+        print("[ERROR] No output from Replicate.")
+        return
+
+    if isinstance(prediction, list):
+        video_url = prediction[0]  # first URL in list
+    elif hasattr(prediction, "url"):  # FileOutput object
+        video_url = prediction.url
+    elif isinstance(prediction, str):  # direct URL string
+        video_url = prediction
     else:
-        print("[ERROR] No video URL returned from Replicate.")
+        print(f"[ERROR] Unexpected output type: {type(prediction)}")
+        return
+
+    print(f"[SVD-Replicate] Downloading video from {video_url}")
+    video_data = requests.get(video_url).content
+    with open(output_path, "wb") as f:
+        f.write(video_data)
+
+    print(f"[OK] Video saved: {output_path}")
+
 
 
 
