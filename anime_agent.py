@@ -280,6 +280,13 @@ def svd_all_frames_to_videos():
         video_path = os.path.join(videos_dir, f"{base_name}.mp4")
         svd_image_to_video(frame_path, video_path)
 
+def run_video_generation_only():
+    """Run Stable Video Diffusion video generation on all PNG frames in /output/frames."""
+    print("[RUN] Video generation only mode started...")
+    svd_all_frames_to_videos()
+    print("[DONE] Video generation only mode finished")
+
+
 # ====================================================
 # FULL WORKFLOW
 # ====================================================
@@ -313,7 +320,7 @@ def run_full_workflow():
 # ====================================================
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage:\n  python anime_agent.py discover \"Book Name\"\n  python anime_agent.py full")
+        print("Usage:\n  python anime_agent.py discover \"Book Name\"\n  python anime_agent.py full\n  python anime_agent.py videos")
         sys.exit(0)
 
     mode = sys.argv[1].lower()
@@ -324,5 +331,7 @@ if __name__ == "__main__":
         discover_favorite_scenes(" ".join(sys.argv[2:]))
     elif mode == "full":
         run_full_workflow()
+    elif mode == "videos":
+        run_video_generation_only()
     else:
         print(f"[ERROR] Unknown mode: {mode}")
