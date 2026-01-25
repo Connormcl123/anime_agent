@@ -235,13 +235,16 @@ def svd_image_to_video_replicate(image_path, output_path, motion="camera pan", f
     if not REPLICATE_API_TOKEN:
         print("[ERROR] Missing REPLICATE_API_TOKEN.")
         return
+
     print(f"[SVD-Replicate] Converting {image_path}...")
     model = replicate.models.get("stability-ai/stable-video-diffusion")
+
     prediction = model.predict(
         image=open(image_path, "rb"),
         motion=motion,
         fps=fps
     )
+
     if prediction and len(prediction) > 0:
         video_url = prediction[0]
         video_data = requests.get(video_url).content
@@ -250,6 +253,7 @@ def svd_image_to_video_replicate(image_path, output_path, motion="camera pan", f
         print(f"[OK] Video saved: {output_path}")
     else:
         print("[ERROR] No video URL returned from Replicate.")
+
 
 def svd_all_frames_to_videos():
     frames_dir = os.path.join(OUTPUT_DIR, "frames")
