@@ -28,7 +28,7 @@ DEPLOYMENT_ID_TTS = "gpt-4o-mini-tts"
 AZURE_OPENAI_KEY_TTS = os.getenv("AZURE_OPENAI_KEY_TTS")
 AZURE_OPENAI_ENDPOINT_TTS = "https://cmcla-mktvctnp-eastus2.cognitiveservices.azure.com/"
 
-# --- Image Generation (Azure DALL·E 3) ---
+# --- Image Generation (Azure DALLï¿½E 3) ---
 AZURE_API_VERSION_IMAGE = "2024-02-01"
 DEPLOYMENT_ID_IMAGE = "dall-e-3"
 
@@ -203,7 +203,7 @@ def generate_tts_azure(audio_text, voice="fable", output_path="narration.mp3"):
         print(f"[ERROR] Azure TTS failed: {r.status_code} {r.text}")
 
 # ====================================================
-# IMAGE GENERATION (Azure DALL·E 3)
+# IMAGE GENERATION (Azure DALLï¿½E 3)
 # ====================================================
 def generate_anime_frame(scene_visual, output_filename):
     if not AZURE_OPENAI_KEY_IMAGE or not AZURE_OPENAI_ENDPOINT_IMAGE:
@@ -240,7 +240,7 @@ def svd_image_to_video_replicate(image_path, output_path, motion="camera pan", f
 
     # The format for replicate.run is "owner/model:version"
     # You can find the latest version on the Replicate model page
-    model_version = "stability-ai/stable-video-diffusion:5f97695b7b636078f5dbabbc423d0a5909734f9c7dbe66bc7c37a5c50717b140"
+    model_version = "sunfjun/stable-video-diffusion:d68b6e09eedbac7a49e3d8644999d93579c386a083768235cabca88796d70d82"
 
     with open(image_path, "rb") as img_file:
         prediction = replicate.run(
