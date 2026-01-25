@@ -231,35 +231,32 @@ def generate_anime_frame(scene_visual, output_filename):
 # ====================================================
 # REPLICATE SVD VIDEO GENERATION
 # ====================================================
-def svd_image_to_video_replicate(image_path, output_path, motion="camera pan", fps=6):
+def svd_image_to_video_replicate(image_path, output_path, motion_bucket_id=127, fps=6):
     if not REPLICATE_API_TOKEN:
         print("[ERROR] Missing REPLICATE_API_TOKEN.")
         return
 
     print(f"[SVD-Replicate] Converting {image_path}...")
 
-    # The format for replicate.run is "owner/model:version"
-    # You can find the latest version on the Replicate model page
-    model_version = "sunfjun/stable-video-diffusion:d68b6e09eedbac7a49e3d8644999d93579c386a083768235cabca88796d70d82"
-
-    with open(image_path, "rb") as img_file:
-        prediction = replicate.run(
-            model_version,
-            input={
-                "image": img_file,
-                "motion": motion,
-                "fps": fps
-            }
-        )
+    prediction = replicate.run(
+        REPLICATE_MODEL_VERSION,  # e.g. "stability-ai/stable-video-diffusion:<version-hash>"
+        input={
+            "input_image": open(image_path, "rb"),
+            "frames": 14,
+            "motion_bucket_id": motion_bucket_id,
+            "fps": fps
+        }
+    )
 
     if prediction and len(prediction) > 0:
-        video_url = prediction[0]  # URL from replicate.run output
+        video_url = prediction[0]
         video_data = requests.get(video_url).content
         with open(output_path, "wb") as f:
             f.write(video_data)
-        print(f"[OK] Video saved to {output_path}")
+        print(f"[OK] Video saved: {output_path}")
     else:
         print("[ERROR] No video URL returned from Replicate.")
+
 
 
 
