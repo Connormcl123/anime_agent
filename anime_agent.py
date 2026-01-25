@@ -237,22 +237,30 @@ def svd_image_to_video_replicate(image_path, output_path, motion="camera pan", f
         return
 
     print(f"[SVD-Replicate] Converting {image_path}...")
-    model = replicate.models.get("stability-ai/stable-video-diffusion")
 
-    prediction = model.predict(
-        image=open(image_path, "rb"),
-        motion=motion,
-        fps=fps
-    )
+    # The format for replicate.run is "owner/model:version"
+    # You can find the latest version on the Replicate model page
+    model_version = "stability-ai/stable-video-diffusion:5f97695b7b636078f5dbabbc423d0a5909734f9c7dbe66bc7c37a5c50717b140"
+
+    with open(image_path, "rb") as img_file:
+        prediction = replicate.run(
+            model_version,
+            input={
+                "image": img_file,
+                "motion": motion,
+                "fps": fps
+            }
+        )
 
     if prediction and len(prediction) > 0:
-        video_url = prediction[0]
+        video_url = prediction[0]  # URL from replicate.run output
         video_data = requests.get(video_url).content
         with open(output_path, "wb") as f:
             f.write(video_data)
-        print(f"[OK] Video saved: {output_path}")
+        print(f"[OK] Video saved to {output_path}")
     else:
         print("[ERROR] No video URL returned from Replicate.")
+
 
 
 def svd_all_frames_to_videos():
