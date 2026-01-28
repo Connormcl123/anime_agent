@@ -1,0 +1,44 @@
+{
+  "scenes": [
+    {
+      "scene_number": 1,
+      "title": "Introduction to the War College",
+      "description": "The protagonist arrives at the War College, a prestigious military academy that trains the next generation of dragon riders. The atmosphere is tense as students prepare for the challenges ahead."
+    },
+    {
+      "scene_number": 2,
+      "title": "The First Challenge",
+      "description": "Students face their first challenge, a rigorous test of physical and mental endurance. The protagonist struggles but shows resilience, setting the stage for future conflicts."
+    },
+    {
+      "scene_number": 3,
+      "title": "The Dragon Bonding",
+      "description": "The moment when students are paired with their dragons. The protagonist's connection with her dragon is unique, hinting at a deeper bond that will be crucial for their survival."
+    },
+    {
+      "scene_number": 4,
+      "title": "Rivalries and Alliances",
+      "description": "Tensions rise as the protagonist navigates the complex social dynamics of the War College, forming alliances while facing rivalries that threaten her position."
+    },
+    {
+      "scene_number": 5,
+      "title": "The First Flight",
+      "description": "A thrilling scene where the protagonist takes her first flight on her dragon, overcoming her fears and proving her worth to her peers."
+    },
+    {
+      "scene_number": 6,
+      "title": "The Revelation",
+      "description": "A pivotal moment where secrets about the War College's true purpose are revealed, leaving the protagonist questioning everything she thought she knew."
+    },
+    {
+      "scene_number": 7,
+      "title": "Climactic Battle",
+      "description": "The climax of the story where the protagonist and her allies face off against a formidable enemy, testing their skills and resolve in an epic showdown."
+    },
+    {
+      "scene_number": 8,
+      "title": "Resolution and Growth",
+      "description": "The aftermath of the battle leads to personal growth for the protagonist. She reflects on her journey and the bonds formed, setting the stage for future adventures."
+    }
+  ]
+}

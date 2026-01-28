@@ -1,0 +1,40 @@
+{
+  "audio_script": "The sound of thunder rumbles in the distance, rising to a crescendo as the storm intensifies. The clash of swords echoes in the air, punctuated by the heavy breathing of the two opponents.",
+  "scenes": [
+    {
+      "time": "0-5s",
+      "visual": "The scene opens on a dramatic cliff overlooking the stormy skies, with violet lightning illuminating the dark clouds. Violet Sorrengail stands in a fighting stance, her petite frame trembling slightly, silver hair whipping around her face. Her violet eyes reflect determination despite her frail appearance.",
+      "audio": "A deep, resonant voice echoes as Xaden Riorson steps into view, his tall, broad-shouldered silhouette backlit by flashes of lightning. His dark hair falls over his forehead, and his confident gray eyes lock onto Violet."
+    },
+    {
+      "time": "5-10s",
+      "visual": "Violet clenches her fists, her heart racing, as memories of their past interactions flash before her eyes. Xaden smirks, the tension between them palpable.",
+      "audio": "The sound of a heartbeat thumping in time with the rising tension. Violet’s inner thoughts are heard: \"I can’t let him win. Not now.\""
+    },
+    {
+      "time": "10-15s",
+      "visual": "Xaden draws his sword, the blade gleaming ominously in the dim light. Violet steadies her breath, her own sword trembling in her grip as she steps forward.",
+      "audio": "The sound of metal scraping against metal as Xaden unsheathes his weapon. Thunder crashes, signaling the start of their climactic confrontation."
+    },
+    {
+      "time": "15-20s",
+      "visual": "A close-up of Violet’s face shows her resolve. She takes a deep breath, her eyes narrowing as she prepares for battle, the storm reflecting her inner turmoil.",
+      "audio": "Violet whispers to herself, \"I have to be strong... for everything I've fought for.\""
+    },
+    {
+      "time": "20-25s",
+      "visual": "The camera pulls back to show the dramatic landscape as they circle each other, both warriors poised for the first strike amidst the howling wind.",
+      "audio": "The wind howls fiercely, and the faint sound of wings flapping can be heard in the background, hinting at the dragons nearby."
+    },
+    {
+      "time": "25-30s",
+      "visual": "As they clash swords, sparks fly, lighting up their fierce expressions. Xaden’s confident demeanor contrasts sharply with Violet’s fierce determination.",
+      "audio": "The sounds of clashing swords resonate, punctuated by grunts of effort and the tension-filled silence between their words."
+    },
+    {
+      "time": "30-35s",
+      "visual": "They break apart momentarily, breathing heavily. Violet’s eyes glisten, revealing a flicker of vulnerability as she locks eyes with Xaden.",
+      "audio": "A moment of silence falls, the storm raging on as both warriors contemplate their next move, the air thick with unspoken feelings."
+    }
+  ]
+}

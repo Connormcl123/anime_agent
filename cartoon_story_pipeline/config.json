@@ -1,0 +1,7 @@
+{
+	"openai_api_key": "YOUR_KEY",
+	"leonardo_api_key": "YOUR_KEY",
+	"elevenlabs_api_key": "YOUR_KEY",
+	"background_image_size": [ 1024, 768 ],
+	"character_default": "Milo"
+}
