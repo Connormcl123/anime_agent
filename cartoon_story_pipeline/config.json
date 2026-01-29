@@ -1,5 +1,5 @@
 {
-	"openai_api_key": "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",
+	"openai_api_key": "OPENAI_JESUSSTORYKEY",
 	"leonardo_api_key": "YOUR_KEY",
 	"elevenlabs_api_key": "YOUR_KEY",
 	"background_image_size": [ 1024, 768 ],
