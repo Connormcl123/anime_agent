@@ -28,8 +28,8 @@ def generate_story(config):
                 {
                     "role": "user",
                     "content": (
-                        f"Generate a short story (~10 pages) themed around '{config.get('daily_theme')}'. "
-                        "Ensure each book page has 1-3 sentences. And link the Bible verse the story is linked to."
+                        f"Generate a short story (~10 pages) themed around '{config.get('daily_theme', 'Kindness to strangers')}'. "
+                        "Ensure each book page has 1-3 sentences. Link the Bible verse in which the story is related to."
                         "Generate a short narration_script for video (~5 minutes). "
                         "scene_prompts should be vivid background descriptions without drawing characters."
                     )

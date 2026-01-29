@@ -36,11 +36,11 @@ def main():
 
     # 5️⃣ Video Assembly
     #video_path = video_assembler.assemble_video(scene_paths, audio_path, config)
-    print(f"[INFO] Video ready: {video_path}")
+    #print(f"[INFO] Video ready: {video_path}")
 
     # 6️⃣ Book Assembly
-    book_path = book_assembler.create_book(story_data['book_text'], scene_paths, config)
-    print(f"[INFO] Book ready: {book_path}")
+    #book_path = book_assembler.create_book(story_data['book_text'], scene_paths, config)
+    #print(f"[INFO] Book ready: {book_path}")
 
 if __name__ == "__main__":
     main()
