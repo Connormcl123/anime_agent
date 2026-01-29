@@ -83,9 +83,6 @@ def generate_story(config):
     return story_data
 
 
-    import json
-import os
-
 def save_story(story_data, filename="exports/story_data.json"):
     os.makedirs(os.path.dirname(filename), exist_ok=True)
     with open(filename, "w", encoding="utf-8") as f:
