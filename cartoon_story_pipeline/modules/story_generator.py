@@ -5,85 +5,80 @@ from openai import OpenAI
 
 def generate_story(config):
     """
-    Generates a child-friendly story structure using the new OpenAI Python API (>=1.0.0).
+    Generates a child-friendly story structure as valid JSON every time.
+    Uses OpenAI API with enforced JSON mode.
     """
-    try:
-        client = OpenAI(api_key=config["openai_api_key"])
+    client = OpenAI(api_key=config["openai_api_key"])
 
+    try:
         completion = client.chat.completions.create(
-            model="gpt-4o-mini",  # Could also use "gpt-4o" or "gpt-3.5-turbo"
+            model="gpt-4o-mini",
             messages=[
                 {
                     "role": "system",
                     "content": (
-                        "You are an assistant that writes gentle, child-friendly cartoon religious short stories "
-                        "for ages 4-7 with recurring characters: Jesus (wise guide), God (all knowing being), "
-                        "and various other religious characters. Stories should be exerted from the Bible but "
-                        "can be rephrased to be positive, kind, and safe. The overall theme and message from the Bible verses "
-                        "being reimagined for young children should be the main objective. The stories however can be reinterpreted "
-                        "for children audiences. "
-                        "Output in JSON format with keys: book_text, narration_script, scene_prompts."
+                        "You are a story generator for children ages 4-7. "
+                        "Your recurring characters are Milo (wise guide), Lena (curious child), "
+                        "and Tavi (playful animal friend). Stories must be gentle, kind, and morally uplifting."
+                        "You MUST respond only in JSON format, no commentary."
                     )
                 },
                 {
                     "role": "user",
                     "content": (
-                        f"Generate a short story (~10 pages) themed around '{config.get('daily_theme', 'Kindness to strangers')}'. "
-                        "Ensure each book page has 1-3 sentences. Link the Bible verse in which the story is related to."
-                        "Generate a short narration_script for video (~5 minutes). "
-                        "scene_prompts should be vivid background descriptions without drawing characters."
+                        f"Generate a short story (~5 pages) themed around '{config.get('daily_theme', 'Kindness to strangers')}'. "
+                        "Keys must be: book_text (list of 5 strings, 1 per page), "
+                        "narration_script (string for video voiceover), "
+                        "scene_prompts (list of exactly 5 scene background descriptions WITHOUT characters). "
+                        "Do not include markdown, escape sequences, or additional prose."
                     )
                 }
             ],
-            temperature=0.7
+            temperature=0.7,
+            response_format={ "type": "json_object" }  # Force JSON output
         )
 
-        # Parse JSON response from GPT
         story_text = completion.choices[0].message.content.strip()
         story_data = json.loads(story_text)
 
     except json.JSONDecodeError:
-        print("[ERROR] OpenAI output was not valid JSON. Falling back to placeholder.")
-        story_data = {
-            "book_text": [
-                "Milo, Lena, and Tavi walked along the sunny path.",
-                "They saw a traveler lying on the road.",
-                "Others passed without helping.",
-                "A kind stranger stopped to help.",
-                "Everyone learned that kindness matters."
-            ],
-            "narration_script": "Once upon a time, Milo, Lena, and Tavi were on a sunny path...",
-            "scene_prompts": [
-                "Sunny countryside path with trees and flowers",
-                "Dusty road with a hurt traveler under the sun",
-                "Two travelers walking past and looking away",
-                "A friendly stranger helping the traveler",
-                "Milo, Lena, and Tavi smiling as they walk away"
-            ]
-        }
+        print("[ERROR] GPT returned invalid JSON. Attempting auto-repair...")
+        try:
+            # Try to fix common JSON issues
+            repaired = story_text.strip("` \n\t")
+            repaired = repaired[repaired.find("{") : repaired.rfind("}") + 1]  # Extract JSON section
+            story_data = json.loads(repaired)
+        except Exception:
+            print("[ERROR] Could not repair JSON. Using fallback story.")
+            story_data = fallback_story()
 
     except Exception as e:
-        print("[ERROR] Failed to generate story:", e)
-        # Fallback to placeholders so the pipeline can still run
-        story_data = {
-            "book_text": [
-                "Milo, Lena, and Tavi walked along the sunny path.",
-                "They saw a traveler lying on the road.",
-                "Others passed without helping.",
-                "A kind stranger stopped to help.",
-                "Everyone learned that kindness matters."
-            ],
-            "narration_script": "Once upon a time, Milo, Lena, and Tavi were on a sunny path...",
-            "scene_prompts": [
-                "Sunny countryside path with trees and flowers",
-                "Dusty road with a hurt traveler under the sun",
-                "Two travelers walking past and looking away",
-                "A friendly stranger helping the traveler",
-                "Milo, Lena, and Tavi smiling as they walk away"
-            ]
-        }
+        print("[ERROR] OpenAI call failed:", e)
+        story_data = fallback_story()
 
     return story_data
+
+
+def fallback_story():
+    """Return a default story if the API fails."""
+    return {
+        "book_text": [
+            "Milo, Lena, and Tavi walked along the sunny path.",
+            "They saw a traveler lying on the road.",
+            "Others passed without helping.",
+            "A kind stranger stopped to help.",
+            "Everyone learned that kindness matters."
+        ],
+        "narration_script": "Once upon a time, Milo, Lena, and Tavi were on a sunny path...",
+        "scene_prompts": [
+            "Sunny countryside path with trees and flowers",
+            "Dusty road with a hurt traveler under the sun",
+            "Two travelers walking past and looking away",
+            "A friendly stranger helping the traveler",
+            "Milo, Lena, and Tavi smiling as they walk away"
+        ]
+    }
+
 
 
 def save_story(story_data, filename="exports/story_data.json"):
