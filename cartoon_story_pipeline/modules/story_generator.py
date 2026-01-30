@@ -18,7 +18,7 @@ def generate_story(config):
                     "role": "system",
                     "content": (
                          "You are an assistant that writes gentle, child-friendly cartoon religious short stories "
-                        "for ages 4-7 with recurring characters: Jesus (wise guide), God (all knowing being), "
+                        "for ages 4-7 with recurring characters from the Bible: Jesus, God (all knowing being), "
                         "and various other religious characters. Stories should be exerted from the Bible but "
                         "can be rephrased to be positive, kind, and safe. The overall theme and message from the Bible verses "
                         "being reimagined for young children should be the main objective. The stories however can be reinterpreted "
@@ -29,7 +29,7 @@ def generate_story(config):
                 {
                     "role": "user",
                     "content": (
-                        f"Generate a short story (~10 pages) themed around '{config.get('daily_theme', 'Kindness to strangers')}'. "
+                        f"Generate a short story (~10 pages) themed around a verse from the Bible. "
                         "Ensure each book page has 1-3 sentences. Link the Bible verse in which the story is related to."
                         "Generate a short narration_script for video (~5 minutes). "
                         "scene_prompts should be vivid background descriptions without drawing characters."
