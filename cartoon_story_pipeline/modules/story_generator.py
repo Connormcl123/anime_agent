@@ -1,6 +1,5 @@
 # modules/story_generator.py
 import json
-import os
 from openai import OpenAI
 
 def generate_story(config):
@@ -17,20 +16,22 @@ def generate_story(config):
                 {
                     "role": "system",
                     "content": (
-                        "You are a story generator for children ages 4-7. "
-                        "Your recurring characters are Milo (wise guide), Lena (curious child), "
-                        "and Tavi (playful animal friend). Stories must be gentle, kind, and morally uplifting."
-                        "You MUST respond only in JSON format, no commentary."
+                         "You are an assistant that writes gentle, child-friendly cartoon religious short stories "
+                        "for ages 4-7 with recurring characters: Jesus (wise guide), God (all knowing being), "
+                        "and various other religious characters. Stories should be exerted from the Bible but "
+                        "can be rephrased to be positive, kind, and safe. The overall theme and message from the Bible verses "
+                        "being reimagined for young children should be the main objective. The stories however can be reinterpreted "
+                        "for children audiences. "
+                        "Output in JSON format with keys: book_text, narration_script, scene_prompts."
                     )
                 },
                 {
                     "role": "user",
                     "content": (
-                        f"Generate a short story (~5 pages) themed around '{config.get('daily_theme', 'Kindness to strangers')}'. "
-                        "Keys must be: book_text (list of 5 strings, 1 per page), "
-                        "narration_script (string for video voiceover), "
-                        "scene_prompts (list of exactly 5 scene background descriptions WITHOUT characters). "
-                        "Do not include markdown, escape sequences, or additional prose."
+                        f"Generate a short story (~10 pages) themed around '{config.get('daily_theme', 'Kindness to strangers')}'. "
+                        "Ensure each book page has 1-3 sentences. Link the Bible verse in which the story is related to."
+                        "Generate a short narration_script for video (~5 minutes). "
+                        "scene_prompts should be vivid background descriptions without drawing characters."
                     )
                 }
             ],
@@ -80,8 +81,8 @@ def fallback_story():
     }
 
 
-
 def save_story(story_data, filename="exports/story_data.json"):
     os.makedirs(os.path.dirname(filename), exist_ok=True)
     with open(filename, "w", encoding="utf-8") as f:
         json.dump(story_data, f, indent=4, ensure_ascii=False)
+
