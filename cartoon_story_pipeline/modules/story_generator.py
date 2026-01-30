@@ -1,5 +1,6 @@
 # modules/story_generator.py
 import json
+import os
 from openai import OpenAI
 
 def generate_story(config):
