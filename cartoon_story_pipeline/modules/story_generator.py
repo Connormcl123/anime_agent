@@ -30,7 +30,7 @@ def generate_story(config):
                     "role": "user",
                     "content": (
                         f"Generate a short story (~10 pages) themed around a verse from the Bible. "
-                        "Ensure each book page has 1-3 sentences. Link the Bible verse in which the story is related to."
+                        "Ensure each book page has 1-3 sentences. Provide the Bible verse that relates to the story."
                         "Generate a short narration_script for video (~5 minutes). "
                         "scene_prompts should be vivid background descriptions without drawing characters."
                     )
