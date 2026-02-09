@@ -1,4 +1,3 @@
-# modules/book_assembler.py
 import os
 from fpdf import FPDF
 
