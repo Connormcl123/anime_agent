@@ -1,8 +1,24 @@
 {
-	"openai_api_key": "OPENAI_JESUSSTORYKEY",
-	"leonardo_api_key": "YOUR_KEY",
-	"daily_theme": "Helping someone in need",
-	"elevenlabs_api_key": "YOUR_KEY",
-	"background_image_size": [ 1024, 768 ],
-	"character_default": "Jesus"
+  "openai_api_key": "OPENAI_API_KEY_BIBLE",
+
+  "daily_theme": "Helping someone in need",
+  "background_image_size": [1024, 768],
+
+  "character_default": "Jesus",
+  "characters_dir": "assets/characters",
+  "character_file_ext": ".png",
+
+  "bible_source": "bible-api",
+  "bible_translation": "kjv",
+  "daily_passage": "Luke 10:30-37",
+
+  "passage_pool_file": "assets/passages.json",
+  "exhausted_pool_mode": "reset",
+
+  "use_openai_backgrounds": true,
+  "openai_image_model": "gpt-image-1",
+  "openai_background_style": "Simple, pastel, child-friendly cartoon background, clean shapes, soft lighting, no text, no characters.",
+
+  "auto_generate_missing_characters": true,
+  "openai_character_style": "Child-friendly cartoon character design, smooth lines, pastel colors, transparent background if possible, full body, front-facing, simple shading."
 }
